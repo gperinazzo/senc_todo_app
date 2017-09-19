@@ -92,7 +92,8 @@ def create_tasks():
 
 	# Tags sao um array vazio por padrao
 	task.tags = data.get('tags', [])
-	task.user = User.objects.filter(id=data.get('user')).first()
+	if 'user' in data.keys():
+		task.user = User.objects.filter(id=data.get('user')).first()
 	task.save()
 	return jsonify(task.to_dict())
 
@@ -101,7 +102,7 @@ def create_tasks():
 def update_tasks(task_id):
 	if not request.is_json:
 		return jsonify({'error': 'not_json'}), 400
-	task = Task.objects.filter(id=task_id)
+	task = Task.objects.filter(id=task_id).first()
 	if not task:
 		return jsonify({'error': 'not_found'}), 404
 	data = request.get_json()
