@@ -3,8 +3,8 @@ Description=uWSGI Emperor
 After=syslog.target
 
 [Service]
-ExecStart=/root/senc_todo_app/env/bin/uwsgi --ini /root/senc_todo_app/uwsgi.ini
-RuntimeDirectory=/root/senc_todo_app
+ExecStart=/root/senc_todo_app/api/env/bin/uwsgi --ini /root/senc_todo_app/api/uwsgi.ini
+RuntimeDirectory=/root/senc_todo_app/api
 Restart=always
 KillSignal=SIGQUIT
 Type=notify
