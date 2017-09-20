@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #E5E5E5;
+}
+
+.app .header {
+	background-color: #ffffff;
+	padding: 0.5em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.app h1 {
+	margin: 0;
+	display: inline;
+}
+
+.app .account_container {
+	display: flex;
+	align-items: center;
+}
+.app .account_container img {
+	width: 40px;
+	height: 40px;
+}
+
+.button {
+  display: inline;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.button img {
+	height: 30px;
+	width: 30px;
+}
+
+.container_form {
+	padding: 1em;
+	margin: 1em auto;
+	background-color: #ffffff;
+	width: 45%;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.container_fields {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.container_task {
+	padding: 1em;
+	background-color: #ffffff;
+	width: 20%;
+	box-shadow: 10px 10px 5px #888888;
+	margin: 1em 0;
+}
+
+.container_task:hover {
+    box-shadow: 0 20px 20px #666;
+}
+
+.container_list {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+h3 {
+	margin-top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.badger_complete {
+	display: inline;
+	font-size: 0.6em;
+	background-color: green;
+	color: white;
+	padding: 0.3em;
+}
+
+h4 {
+	margin: 0.7em 0;
+}
+
+input {
+	display: block;
+	height: 2em;
+	width: 100%;
+	margin-top: 0.5em;
+}
+
+.container_inputs {
+	width: 80%;
+}
