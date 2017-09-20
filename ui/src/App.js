@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   _handleCompleteTask(msg, id) {
-    Axios.patch("http://localhost:5000/tasks/" + id , {complete: true})
+    Axios.patch("/tasks/" + id , {complete: true})
       .then(function(response){
 
         let tasks = this.state.tasks.slice(); // Copia o array!
@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   _handleAddTask(msg, task) {
-    Axios.post("http://localhost:5000/tasks", task)
+    Axios.post("/tasks", task)
       .then(function(response){
 
         let tasks = this.state.tasks.slice(); // Copia o array!
@@ -46,7 +46,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get("http://localhost:5000/tasks")
+    Axios.get("/tasks")
       .then(function(response){
         this.setState({tasks: response.data});
       }.bind(this));
