@@ -2,7 +2,7 @@ from flask import jsonify
 from flask import Flask, request
 import mongoengine as me
 from datetime import datetime
-from flas_cors import CORS
+from flask_cors import CORS
 
 
 class User(me.Document):
