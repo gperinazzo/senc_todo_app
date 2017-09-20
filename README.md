@@ -61,6 +61,7 @@ cd ../ui
 npm install
 npm run build
 chown -R www-data:www-data build
+mv build /
 cd ..
 ```
 Esse comando irá gerar o bundle de javascript final de nossa aplicação (o Rogerio deu uma melhorada nele :) )
