@@ -37,6 +37,13 @@ cd senc_todo_app
 ```
 (O projeto deve estar em `/root/senc_todo_app`)
 
+O Digital Ocean tenta indentificar o local de onde quem criou o droplet é, e isso gera alguns problemas de configuração. Para evitar erros, execute o seguinte comando:
+```
+locale-gen en_US.UTF-8
+export LC_ALL="en_US.UTF-8"
+```
+
+
 #Instalando o projeto
 
 Inicialmente, vamos instalar as dependências de python:
@@ -53,6 +60,7 @@ Após isso, vamos criar os arquivos finais da interface:
 cd ../ui
 npm install
 npm run build
+chown -R www-data:www-data build
 cd ..
 ```
 Esse comando irá gerar o bundle de javascript final de nossa aplicação (o Rogerio deu uma melhorada nele :) )
@@ -64,7 +72,7 @@ Description=uWSGI Emperor
 After=syslog.target
 
 [Service]
-ExecStart=/root/senc_todo_app/api/env/bin/uwsgi --ini /root/senc_todo_app/api/uwsgi.ini
+ExecStart=/root/senc_todo_app/api/env/bin/uwsgi --ini /root/senc_todo_app/api/uwsgi.ini --lazy-apps
 RuntimeDirectory=/root/senc_todo_app/api
 Restart=always
 KillSignal=SIGQUIT
@@ -85,28 +93,28 @@ systemctl start todo.service
 Por ultimo, o seguinte arquivo de configuração para o nginx foi criado:
 ```
 server {
-    listen 80;
+	listen 80 default_server;
 
-    location /users {
-        include uwsgi_params;
-        uwsgi_pass unix:///api_server.sock;
-    }
+	location /users {
+		include uwsgi_params;
+		uwsgi_pass unix:///api_server.sock;
+	}
 
-    location /tasks {
-        include uwsgi_params;
-        uwsgi_pass unix:///api_server.sock;
-    }
+	location /tasks {
+		include uwsgi_params;
+		uwsgi_pass unix:///api_server.sock;
+	}
 
-    location / {
-        root /root/senc_todo_app/ui/build
-    }
-
+	location / {
+		root /root/senc_todo_app/ui/build;
+	}
 }
 
 ```
 Esse arquivo diz para o nginx redirecionar qualquer rota com `/users` ou `/tasks` para nosso servidor em python, e em outras rotas servir arquivos criados pelo frontend. Mova a configuração para a pasta certa e reinicie o nginx:
 ```
 mv nginx.conf /etc/nginx/conf.d/
+rm /etc/nginx/sites-enabled/default
 systemctl restart nginx.service
 ```
 
