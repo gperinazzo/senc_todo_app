@@ -51,6 +51,7 @@ Alem das dependências que vimos no minicurso, será instalado tambem o `uWSGI`,
 Após isso, vamos criar os arquivos finais da interface:
 ```
 cd ../ui
+npm install
 npm run build
 cd ..
 ```
@@ -110,3 +111,9 @@ systemctl restart nginx.service
 ```
 
 E pronto, seu projeto está disponivel no servidor (acesse colocando o IP do servidor no navegador). O meu está em [http://165.227.182.9]
+
+![](http://images.eonline.com/eol_images/Entire_Site/2013108//rs_490x209-131108101415-5.gif)
+
+Qualquer duvida, estamos disponíveis em:
+- perinazzo@raccoon.ag
+- rogerio@raccoon.ag
